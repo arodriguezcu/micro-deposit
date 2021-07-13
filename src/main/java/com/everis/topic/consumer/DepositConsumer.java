@@ -82,4 +82,19 @@ public class DepositConsumer {
   
   }
   
+  /** Consume del topico transaction. */
+  @KafkaListener(topics = "created-wallet-deposit-topic", groupId = "deposit-group")
+  public Disposable retrieveCreatedWalletDeposit(String data) throws JsonProcessingException {
+  
+    Deposit deposit = objectMapper.readValue(data, Deposit.class);
+    
+    depositProducer.sendDepositAccountTopic(deposit);
+    
+    return Mono.just(deposit)
+      .log()
+      .flatMap(depositService::update)
+      .subscribe();
+  
+  }
+  
 }
