@@ -1,6 +1,6 @@
 spring:
   application:
-    name: deposit-service
+    name: micro-deposit
   cloud:
     config:
 #      uri: http://localhost:8081

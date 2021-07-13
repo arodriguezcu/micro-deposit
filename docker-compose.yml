@@ -2,7 +2,7 @@ version: "3"
 
 services:
   web:
-    container_name: deposit-service
+    container_name: micro-deposit
     restart: always
     build: .
     ports:
